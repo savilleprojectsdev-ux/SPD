@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saville Projects PTY LTD – Private Investor Opportunities</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #B8973A; --gold-light: #D4B96A; --gold-pale: #F5EDD8;
+    --charcoal: #1C1C1A; --slate: #3A3A38; --muted: #7A7A76;
+    --border: rgba(184,151,58,0.25); --bg: #FAFAF8;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--charcoal); font-size: 15px; line-height: 1.7; min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; border-bottom: 0.5px solid var(--border); background: rgba(250,250,248,0.97); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(4px); }
+  .nav-wordmark { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.1; }
+  .nav-wordmark .name { font-size: 1.4rem; color: var(--charcoal); }
+  .nav-wordmark .name span { color: var(--gold); }
+  .nav-wordmark .pty { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.18em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px 4px; background: none; border: none; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: all 0.2s; }
+
+  /* ── MOBILE MENU OVERLAY ── */
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--gold-light); }
+  .mobile-menu-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 2rem; line-height: 1; padding: 0.25rem 0.6rem; }
+  .mobile-cta { font-family: 'DM Sans', sans-serif !important; font-size: 0.85rem !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; background: var(--gold) !important; color: #fff !important; padding: 0.9rem 2.5rem !important; border-radius: 0 !important; margin-top: 0.5rem; }
+
+  /* ── BUTTONS ── */
+  .btn-primary, .btn-outline, .btn-gold, .btn-ghost { display: inline-block; padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; text-align: center; }
+  .btn-primary { background: var(--charcoal); color: #fff; }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-outline { background: transparent; color: var(--charcoal); border: 0.5px solid var(--charcoal); }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-gold { background: var(--gold); color: #fff; }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.7); border: 0.5px solid rgba(255,255,255,0.25); }
+  .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero-section { max-width: 1100px; margin: 0 auto; padding: 5.5rem 3rem 5rem; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 0.5px; background: var(--gold); flex-shrink: 0; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.8rem; font-weight: 300; line-height: 1.12; margin-bottom: 1.5rem; }
+  .hero-h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ── HERO CARD ── */
+  .hero-card { background: var(--charcoal); padding: 2.5rem; color: #fff; position: relative; overflow: hidden; }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent); }
+  .card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 2rem; }
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 0.3rem; }
+  .stat-value sup { font-size: 1.1rem; vertical-align: super; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; }
+  .card-divider { border: none; border-top: 0.5px solid rgba(184,151,58,0.3); margin: 1.5rem 0; }
+  .card-partner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+  .partner-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
+  .partner-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--gold-light); }
+  .badge { background: rgba(184,151,58,0.15); border: 0.5px solid rgba(184,151,58,0.4); color: var(--gold-light); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.75rem; white-space: nowrap; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-rule { border-top: 0.5px solid var(--border); margin-bottom: 4rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.15; color: var(--charcoal); }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-desc { max-width: 360px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+  /* ── STEPS ── */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); border: 0.5px solid var(--border); }
+  .step { padding: 2rem 1.75rem; border-right: 0.5px solid var(--border); }
+  .step:last-child { border-right: none; }
+  .step-icon { width: 38px; height: 38px; background: var(--gold-pale); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--gold); flex-shrink: 0; }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+  .step-title { font-size: 12px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── PILLARS ── */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .pillar { padding: 2rem; border: 0.5px solid var(--border); background: #fff; transition: border-color 0.2s, box-shadow 0.2s; }
+  .pillar:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(184,151,58,0.08); }
+  .pillar-icon { width: 40px; height: 40px; background: var(--gold-pale); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; color: var(--gold); flex-shrink: 0; }
+  .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.6rem; }
+  .pillar-text { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+  /* ── BUILDER ── */
+  .builder-block { display: grid; grid-template-columns: 1fr 1fr; border: 0.5px solid var(--border); background: #fff; }
+  .builder-content { padding: 3rem; border-right: 0.5px solid var(--border); }
+  .builder-meta { padding: 3rem; background: var(--charcoal); color: #fff; }
+  .meta-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+  .meta-item { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .meta-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
+  .kostas-quote { border-left: 2px solid var(--gold); padding-left: 1.25rem; margin: 1.5rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--slate); line-height: 1.7; }
+  .credential-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .credential { background: var(--gold-pale); border: 0.5px solid var(--border); padding: 0.4rem 0.9rem; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); font-weight: 500; }
+
+  /* ── TIERS ── */
+  .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .type-card { padding: 2rem; border: 0.5px solid var(--border); background: var(--gold-pale); }
+  .type-icon { width: 40px; height: 40px; background: #fff; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; color: var(--gold); }
+  .type-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.4rem; }
+  .type-range { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; margin-bottom: 1rem; }
+  .type-text { font-size: 13px; color: var(--slate); line-height: 1.7; }
+
+  /* ── CTA BAND ── */
+  .cta-band { background: var(--charcoal); padding: 5rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-band::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .cta-band h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: #fff; margin-bottom: 1rem; line-height: 1.2; }
+  .cta-band h2 em { font-style: italic; color: var(--gold-light); }
+  .cta-band p { color: rgba(255,255,255,0.55); font-size: 14px; max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.8; }
+  .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER CTA STRIP ── */
+  .footer-cta { background: var(--gold-pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+  .footer-cta-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.25rem; }
+  .footer-cta-text p { font-size: 13px; color: var(--muted); }
+  .footer-cta-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-email { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+
+  /* ── FOOTER ── */
+  footer { padding: 2rem 3rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-wordmark .name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--charcoal); }
+  .footer-wordmark .name span { color: var(--gold); }
+  .footer-wordmark .pty { font-size: 0.65rem; font-family: 'Cormorant Garamond', serif; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; }
+  .footer-note { font-size: 11px; color: var(--muted); max-width: 500px; line-height: 1.6; }
+
+  /* ── ANIMATIONS ── */
+  .animate-in { opacity: 0; transform: translateY(18px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.34s; } .delay-4 { animation-delay: 0.46s; }
+  svg.icon { display: block; }
+
+  /* ══════════════════════════════════════════
+     TABLET  ≤ 900px
+  ══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    nav { padding: 1.1rem 1.75rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero-section { padding: 4rem 2rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-h1 { font-size: 3rem; }
+    .hero-sub { max-width: 100%; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step { border-right: none; border-bottom: 0.5px solid var(--border); }
+    .step:nth-child(odd) { border-right: 0.5px solid var(--border); }
+    .step:nth-last-child(-n+2) { border-bottom: none; }
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .builder-block { grid-template-columns: 1fr; }
+    .builder-content { border-right: none; border-bottom: 0.5px solid var(--border); padding: 2rem; }
+    .builder-meta { padding: 2rem; }
+    .types-grid { grid-template-columns: 1fr 1fr; }
+    .section { padding: 4rem 2rem; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+    .section-title { font-size: 2.3rem; }
+    .section-rule { margin-bottom: 2.5rem; }
+    .footer-cta { padding: 2rem; }
+    footer { padding: 1.5rem 2rem; }
+  }
+
+  /* ══════════════════════════════════════════
+     MOBILE  ≤ 600px
+  ══════════════════════════════════════════ */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-wordmark .name { font-size: 1.15rem; }
+    .hero-section { padding: 2.5rem 1.25rem 2rem; }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 0.15em; }
+    .hero-h1 { font-size: 2.3rem; line-height: 1.15; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 14px; margin-bottom: 1.75rem; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta a { width: 100%; text-align: center; }
+    .hero-card { padding: 1.5rem; }
+    .stat-value { font-size: 2rem; }
+    .card-stats { gap: 1rem; }
+    .steps { grid-template-columns: 1fr; border: 0.5px solid var(--border); }
+    .step { border-right: none !important; border-bottom: 0.5px solid var(--border); padding: 1.25rem 1.5rem; }
+    .step:last-child { border-bottom: none; }
+    .section { padding: 2.5rem 1.25rem; }
+    .section-title { font-size: 1.9rem; }
+    .section-rule { margin-bottom: 1.75rem; }
+    .section-header { margin-bottom: 1.75rem; gap: 0.75rem; }
+    .section-desc { max-width: 100%; }
+    .pillars { grid-template-columns: 1fr; gap: 1rem; }
+    .pillar { padding: 1.5rem; }
+    .builder-content { padding: 1.5rem; }
+    .builder-meta { padding: 1.5rem; }
+    .kostas-quote { font-size: 1rem; }
+    .types-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .type-card { padding: 1.5rem; }
+    .cta-band { padding: 3rem 1.25rem; }
+    .cta-band h2 { font-size: 2rem; }
+    .cta-band p { font-size: 13px; }
+    .cta-group { flex-direction: column; align-items: stretch; }
+    .cta-group a { width: 100%; text-align: center; }
+    .footer-cta { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    .footer-cta-text h3 { font-size: 1.3rem; }
+    .footer-cta-actions { flex-direction: column; align-items: stretch; width: 100%; gap: 1rem; }
+    .footer-cta-actions a { width: 100%; text-align: center; }
+    .footer-email { font-size: 12px; }
+    footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .footer-note { max-width: 100%; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">&#x2715;</button>
+  <a href="#model" onclick="closeMobileMenu()">Our Model</a>
+  <a href="#builder" onclick="closeMobileMenu()">Our Builder</a>
+  <a href="#invest" onclick="closeMobileMenu()">Invest</a>
+  <a href="mailto:savilleprojects.dev@gmail.com" onclick="closeMobileMenu()">Contact</a>
+  <a class="mobile-cta" href="mailto:savilleprojects.dev@gmail.com?subject=Investor%20Registration%20of%20Interest&body=Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20investment%20opportunities%20with%20Saville%20Projects.%0A%0APlease%20contact%20me%20to%20discuss%20further.%0A%0AKind%20regards" onclick="closeMobileMenu()">Register Interest ↗</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wordmark">
+    <div class="name">Saville <span>Projects</span></div>
+    <div class="pty">PTY LTD</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#model">Our Model</a></li>
+    <li><a href="#builder">Our Builder</a></li>
+    <li><a href="#invest">Invest</a></li>
+    <li><a href="mailto:savilleprojects.dev@gmail.com">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="animate-in hero-eyebrow">Private Investment Opportunities — Melbourne</div>
+  <div class="hero-grid">
+    <div>
+      <h1 class="hero-h1 animate-in delay-1">Build Wealth Through <em>Property</em></h1>
+      <p class="hero-sub animate-in delay-2">Saville Projects partners with private investors to develop quality residential properties across Melbourne's high-growth markets. Secured, transparent, and professionally managed from acquisition to settlement.</p>
+      <div class="hero-cta animate-in delay-3">
+        <a href="mailto:savilleprojects.dev@gmail.com?subject=Investor%20Registration%20of%20Interest&body=Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20investment%20opportunities%20with%20Saville%20Projects.%0A%0APlease%20contact%20me%20to%20discuss%20further.%0A%0AKind%20regards" class="btn-primary">Register Interest ↗</a>
+        <a href="#model" class="btn-outline">Learn How It Works</a>
+      </div>
+    </div>
+    <div class="animate-in delay-4">
+      <div class="hero-card">
+        <div class="card-label">Investor Snapshot</div>
+        <div class="card-stats">
+          <div><div class="stat-value"><sup>$</sup>50K</div><div class="stat-label">Min. investment</div></div>
+          <div><div class="stat-value">15–20<sup>%</sup></div><div class="stat-label">Target returns p.a.</div></div>
+          <div><div class="stat-value">3–24</div><div class="stat-label">Month project terms</div></div>
+          <div><div class="stat-value">2<sup>nd</sup></div><div class="stat-label">Mortgage security</div></div>
+        </div>
+        <hr class="card-divider">
+        <div class="card-partner">
+          <div><div class="partner-label">Build Partner</div><div class="partner-name">Crown Family Homes</div></div>
+          <div class="badge">Licensed Builder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="padding-top:0;" id="model">
+  <div class="section-rule"></div>
+  <div class="section-header">
+    <div><div class="section-eyebrow">The Process</div><div class="section-title">How your<br><em>investment works</em></div></div>
+    <p class="section-desc">A straightforward, four-stage journey from capital commitment to return on investment.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="step-num">01</div><div class="step-title">Expression of Interest</div>
+      <div class="step-desc">We present the project details, financials, and risk profile. You review and ask questions before committing.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div class="step-num">02</div><div class="step-title">Legal Agreement</div>
+      <div class="step-desc">A formal loan agreement is executed, with your capital secured against the project property via registered second mortgage.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="step-num">03</div><div class="step-title">Development Phase</div>
+      <div class="step-desc">Crown Family Homes manages construction. You receive regular progress updates and milestone reporting throughout.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="step-num">04</div><div class="step-title">Return of Capital</div>
+      <div class="step-desc">Upon project completion and sale, your capital plus agreed returns are repaid in full from settlement proceeds.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SAVILLE -->
+<section style="background:#fff; padding:0;">
+  <div class="section" style="padding-top:5rem;">
+    <div class="section-rule"></div>
+    <div class="section-header">
+      <div><div class="section-eyebrow">Our Principles</div><div class="section-title">Why investors choose<br><em>Saville Projects</em></div></div>
+      <p class="section-desc">We believe private investors deserve the same quality of opportunity and transparency typically reserved for institutional capital.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="pillar-title">Property-Backed Security</div>
+        <p class="pillar-text">Every investment is secured by a registered second mortgage over real property — a tangible, legal interest in a real asset.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="pillar-title">Defined Timelines</div>
+        <p class="pillar-text">Projects run 3–24 months with clear milestones. No open-ended commitments — you know when your capital returns.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="pillar-title">Full Transparency</div>
+        <p class="pillar-text">Receive project financials, build updates, and milestone reports throughout. No surprises, no guesswork.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="pillar-title">Aligned Interests</div>
+        <p class="pillar-text">We only profit when the project succeeds. Our fees and returns are structured so your success is ours — no conflicts of interest.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="pillar-title">Primary Lender Secured</div>
+        <p class="pillar-text">Senior financing is already in place. Private investors fill the equity gap — with clearly defined capital stack positioning from day one.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" y1="12" x2="12" y2="18"/></svg></div>
+        <div class="pillar-title">Simple, Clear Agreements</div>
+        <p class="pillar-text">Plain-language legal agreements. We encourage every investor to seek independent legal and financial advice before committing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="section" style="padding-top:5rem;" id="builder">
+  <div class="section-rule"></div>
+  <div class="section-header">
+    <div><div class="section-eyebrow">Build Confidence</div><div class="section-title">Our builder:<br><em>Crown Family Homes</em></div></div>
+    <p class="section-desc">The quality of a development is only as strong as the team behind it. That's why we partner exclusively with Crown Family Homes.</p>
+  </div>
+  <div class="builder-block">
+    <div class="builder-content">
+      <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;">Director</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:400; color:var(--charcoal); margin-bottom:1.25rem;">Kostas Barlas</div>
+      <p style="font-size:14px; color:var(--slate); line-height:1.8; margin-bottom:1rem;">Kostas brings over 40 years of experience in the building industry. Having started in 1980 in a family business alongside his father and brothers, he has led projects ranging from full renovations to major extensions across Melbourne.</p>
+      <div class="kostas-quote">"Delivering quality transformations to Melbourne homes — that is what we have always stood for."</div>
+      <p style="font-size:14px; color:var(--slate); line-height:1.8; margin-bottom:1rem;">Notably, Kostas spent three years with Cameron Constructions, a leading Melbourne renovation firm, personally overseeing the extension and renovation of the Michael Cameron residence. He has also served as a supervisor with Long Island Homes and Soho Living.</p>
+      <p style="font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:1.5rem;">Crown Family Homes, under his leadership, has been successfully operating for over a decade — delivering quality residential transformations across Melbourne.</p>
+      <div class="credential-row">
+        <div class="credential">DB-U 75588</div>
+        <div class="credential">CDB-U 75868</div>
+        <div class="credential">ABN 57 664 226 395</div>
+        <div class="credential">VIC Licensed</div>
+      </div>
+    </div>
+    <div class="builder-meta">
+      <div class="card-label" style="margin-bottom:1.5rem;">What this means for your investment</div>
+      <ul class="meta-list">
+        <li class="meta-item"><div class="meta-dot"></div>40+ years of hands-on building experience reduces costly delays and variation orders</li>
+        <li class="meta-item"><div class="meta-dot"></div>Build programmes are managed to a defined schedule, protecting your return timeline</li>
+        <li class="meta-item"><div class="meta-dot"></div>Quality finishes support strong sale prices and faster project exits</li>
+        <li class="meta-item"><div class="meta-dot"></div>Established supplier and trade relationships control material costs effectively</li>
+        <li class="meta-item"><div class="meta-dot"></div>A decade of Crown Family Homes operations means proven systems and reliable delivery</li>
+        <li class="meta-item"><div class="meta-dot"></div>Dual licensing (DB-U &amp; CDB-U) covers the full scope of residential development work</li>
+      </ul>
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:0.5px solid rgba(184,151,58,0.3);">
+        <div class="partner-label">View completed projects</div>
+        <a href="https://www.crownfamilyhomes.com.au" target="_blank" style="color:var(--gold-light); font-size:13px; font-family:'Cormorant Garamond',serif; font-weight:400;">www.crownfamilyhomes.com.au</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTOR TIERS -->
+<section class="section" style="padding-top:0;" id="invest">
+  <div class="section-rule"></div>
+  <div class="section-header">
+    <div><div class="section-eyebrow">Who We Work With</div><div class="section-title">Investment<br><em>participation tiers</em></div></div>
+    <p class="section-desc">We welcome investors at different capital levels, each with tailored terms and engagement.</p>
+  </div>
+  <div class="types-grid">
+    <div class="type-card">
+      <div class="type-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="type-title">Foundation Partner</div><div class="type-range">$50,000 – $150,000</div>
+      <p class="type-text">Ideal for investors new to property development. Fixed-return loan structure with registered second mortgage security. Perfect for diversifying an existing portfolio.</p>
+    </div>
+    <div class="type-card">
+      <div class="type-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="type-title">Core Partner</div><div class="type-range">$150,000 – $500,000</div>
+      <p class="type-text">Preferred partner terms with priority allocation on new projects. Enhanced returns and more detailed project reporting throughout the development lifecycle.</p>
+    </div>
+    <div class="type-card">
+      <div class="type-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="type-title">Strategic Partner</div><div class="type-range">$500,000+</div>
+      <p class="type-text">Direct access to the Saville Projects pipeline. Co-investment structures available. Relationship-based engagement across multiple projects.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to explore<br><em>your first project?</em></h2>
+  <p>We're building a selective group of private investors who value transparency, security, and results. Places are limited by project capacity.</p>
+  <div class="cta-group">
+    <a href="mailto:savilleprojects.dev@gmail.com?subject=Investor%20Registration%20of%20Interest&body=Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20investment%20opportunities%20with%20Saville%20Projects.%0A%0APlease%20contact%20me%20to%20discuss%20further.%0A%0AKind%20regards" class="btn-gold">Register Interest ↗</a>
+    <a href="mailto:savilleprojects.dev@gmail.com?subject=Investor%20Enquiry" class="btn-ghost">Send an Enquiry</a>
+  </div>
+</div>
+
+<!-- FOOTER CTA STRIP -->
+<div class="footer-cta">
+  <div class="footer-cta-text">
+    <h3>Take the first step toward your <em style="font-style:italic; color:var(--gold);">next investment</em></h3>
+    <p>Reach out directly — we respond to all enquiries within one business day.</p>
+  </div>
+  <div class="footer-cta-actions">
+    <div class="footer-email">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      savilleprojects.dev@gmail.com
+    </div>
+    <a href="mailto:savilleprojects.dev@gmail.com?subject=Investor%20Registration%20of%20Interest&body=Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20investment%20opportunities%20with%20Saville%20Projects.%0A%0APlease%20contact%20me%20to%20discuss%20further.%0A%0AKind%20regards" class="btn-primary">Register Interest ↗</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-wordmark">
+    <div class="name">Saville <span>Projects</span></div>
+    <div class="pty">PTY LTD</div>
+  </div>
+  <p class="footer-note">This material is for informational purposes only and does not constitute financial or investment advice. All investments carry risk, including the risk of loss of capital. Returns are targets only and are not guaranteed. Please seek independent legal and financial advice before investing. Saville Projects PTY LTD, Melbourne, Australia.</p>
+</footer>
+
+<script>
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
+</script>
+</body>
+</html>
